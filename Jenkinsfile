@@ -24,7 +24,7 @@ pipeline{
      stage("Build & SonarQube analysis") {
             agent any
             steps {
-              withSonarQubeEnv('Sonar-Service2') {
+              withSonarQubeEnv('sonar-server') {
                 sh 'java -version'
                 sh 'mvn clean package sonar:sonar'
               }
@@ -38,7 +38,7 @@ pipeline{
            "files" :[
            {
            "pattern":"target/*.jar",
-           "target":"art-doc-devo-loc"
+           "target":"artifactory-docker-dev-local-cichallenge"
            }
            ]
          }''',
