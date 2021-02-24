@@ -26,7 +26,7 @@ pipeline{
             steps {
               withSonarQubeEnv('sonar-server') {
                 sh 'java -version'
-                sh 'mvn clean package sonar:sonar'
+                sh 'mvn sonar:sonar'
               }
             }
           }
