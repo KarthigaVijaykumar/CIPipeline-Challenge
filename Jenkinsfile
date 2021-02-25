@@ -30,6 +30,11 @@ pipeline{
               }
             }
           }
+     stage("Quality gate") {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
      stage('Deploy to artifactory'){
         steps{
         rtUpload(
