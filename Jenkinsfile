@@ -47,9 +47,28 @@ pipeline{
            }
            ]
          }''',
-         
       )
       }
+     }
+     stage('Download to Artifacts'){
+        steps{
+        rtDownload(
+         serverId : 'ARTIFACTORY_SERVER',
+         spec :'''{
+           "files" :[
+           {
+           "pattern": ""artifactory-docker-dev-local-cichallenge/",
+           "target": "artifacts/"
+           }
+           ]
+         }''',
+      )
+      }
+     }
+     stage('Deploy to AWS'){
+         sshagent(['a70a80fb-a4ac-42c3-baf8-54ce6b9e1e53']){
+             sh 'scp -r artifacts/*.jar ubuntu@13.233.227.116:/home/ubuntu/artifacts'
+         }
      }
     }
    post {  
@@ -71,5 +90,4 @@ pipeline{
              echo 'For example, if the Pipeline was previously failing but is now successful'  
          }  
      }
-   
   }
