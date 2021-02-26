@@ -68,7 +68,7 @@ pipeline{
      stage('Deploy to AWS'){
         steps{
              sshagent(['a70a80fb-a4ac-42c3-baf8-54ce6b9e1e53']){
-             sh 'scp -r artifacts/*.jar ubuntu@13.233.227.116:/home/ubuntu/artifacts'
+             sh 'scp -r /var/jenkins_home/workspace/CIChallenge-Pipeline/artifacts/*.jar ubuntu@13.233.227.116:/home/ubuntu/artifacts'
          }
      }
     }
