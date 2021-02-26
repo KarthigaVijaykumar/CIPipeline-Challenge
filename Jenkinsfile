@@ -57,7 +57,7 @@ pipeline{
          spec :'''{
            "files" :[
            {
-           "pattern": ""artifactory-docker-dev-local-cichallenge/",
+           "pattern": "artifactory-docker-dev-local-cichallenge/",
            "target": "artifacts/"
            }
            ]
