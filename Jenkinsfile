@@ -5,9 +5,11 @@ pipeline{
       jdk 'JDK11'
    }
   stages {
-      stage("Maven Build"){
+      stage('Maven Build'){
           steps{
-              sh 'mvn -B -DskipTests clean package'
+             dir('C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins\.jenkins\workspace\AWSCIChallenge'){
+                   sh 'mvn -B -DskipTests clean package'
+                }
           }
       }
       stage('Maven Test'){
@@ -20,7 +22,7 @@ pipeline{
             }
         }
         }
-     stage("Build & SonarQube analysis") {
+     stage('Build & SonarQube analysis') {
             agent any
             steps {
               withSonarQubeEnv('sonar-server') {
@@ -29,7 +31,7 @@ pipeline{
               }
             }
           }
-     stage("Quality gate") {
+     stage('Quality gate') {
             steps {
                 waitForQualityGate abortPipeline: true
             }
