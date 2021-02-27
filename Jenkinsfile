@@ -14,7 +14,9 @@ pipeline{
       }
       stage('Maven Test'){
             steps{
-                sh 'mvn test'
+               dir('C:/WINDOWS/system32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/AWSCIChallenge'){
+                   sh 'mvn test'
+                }
             }
             post{
             always{
@@ -25,9 +27,11 @@ pipeline{
      stage('Build & SonarQube analysis') {
             agent any
             steps {
-              withSonarQubeEnv('sonar-server') {
-                sh 'java -version'
-                sh 'mvn sonar:sonar'
+                 dir('C:/WINDOWS/system32/config/systemprofile/AppData/Local/Jenkins/.jenkins/workspace/AWSCIChallenge'){
+                 withSonarQubeEnv('sonar-server') {
+                 sh 'java -version'
+                 sh 'mvn sonar:sonar'
+               }
               }
             }
           }
