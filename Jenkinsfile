@@ -20,7 +20,7 @@ pipeline{
             }
         }
         }
-     stage('Build & SonarQube analysis') {
+     stage('SonarQube analysis') {
             agent any
             steps {
                  withSonarQubeEnv('sonar-server') {
